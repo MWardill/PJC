@@ -1,0 +1,94 @@
+#amk 2
+#path "X3 Boss"
+#spc
+{
+	#game "Mega Man X3"
+	#title "Maverick Battle"
+	#author "Kinuyo Yamashita"
+}
+#samples
+{
+	#optimized
+	"Electric Bass.brr"
+	"Distorted Guitar.brr"
+	"Overdriven Guitar.brr"
+	"Strings.brr"
+	"Crash Cymbal (X1).brr"
+	"Snare.brr"
+	"Kick.brr"
+}
+#instruments
+{
+	"Electric Bass.brr" $FF $EC $AF $1E $00 ; @30
+	"Distorted Guitar.brr" $FF $E0 $B5 $07 $93 ; @31
+	"Overdriven Guitar.brr" $FF $E0 $B6 $04 $FE ; @32
+	"Strings.brr" $FF $E0 $AD $04 $8C ; @33
+	"Crash Cymbal (X1).brr" $FF $F1 $B8 $07 $60 ; @34
+	"Snare.brr" $FF $E0 $B2 $07 $A8 ; @35
+	"Kick.brr" $FF $E0 $B2 $07 $A8 ; @36
+}
+
+t71 $F4 $02 /
+
+w160 ; w255
+
+;$F6 $0C $70 $F6 $1C $70
+$EF $01 $A5 $5B
+$F1 $02 $3C $01
+$F5 $34 $33 $00 $D9 $E5 $01 $FC $EB
+
+(!997)[$ED $80 $AD]
+(!999)[$ED $80 $AF]
+(!1002)[$ED $80 $B2]
+(!1005)[$ED $80 $B5]
+(!1006)[$ED $80 $B6]
+(!1100)[$F4 $09]
+
+"revert = (!1100, -1)"
+"gainAD = (!997, 3)"
+"gainAF = (!999, 3)"
+"gainB2 = (!1002, 3)"
+"gainB5 = (!1005, 3)"
+"gainB6 = (!1006, 3)"
+
+"Channel 1 = #0 y9 v150"
+"Channel 2 = #1 @32 gainB6 revert y6 v98"
+"Channel 3 = #2 @33 gainAD revert v170 y10"
+"Channel 4 = #3 @32 gainB6 revert y14 v98"
+"Channel 5 = #4 gainB2 revert"
+"Channel 6 = #5 revert gainAF @30 y10 v212"
+"Channel 7 = #6 y11"
+"Channel 8 = #7 @34 v135 y10 revert gainAF /"
+
+"k = @36 v180 o3"
+"s = @35 v206 o4"
+"crash = @34 v230 o3"
+
+Channel 1
+(0)[revert @31 q2F l8 gainB5 
+[[o5c<gg>c<gg>c+<g]]2 [[o5d+<a+a+>d+<a+a+>e<a+]]2 [[o5fccfccf+c]]2
+gdgf+c+f+fcfcfe<b>ed+<] a+
+
+Channel 2
+[[o4c=18r32]]64
+
+Channel 3
+l4 o4c.r2^8<b.r2^8a+.r2^8a.r2^8g+.r2^8>f+.r.f8.r16g2. $ED $80 $AB ^4^1
+
+Channel 4
+[[o3g=18r32]]64
+
+Channel 5
+[[y10 crash d=18r=30 k f=18r32f8.r16f=18r32 s d=18r32d=18r32]]6
+crash y6 d8.r8. y14 c=18r=6 s y10 d=18r32d=18r32 crash y6 d=18r32 s y10 d=18r32
+crash y14 c8.r8. y6 d=18r32 s y10 d=18r32d=18r32 crash y14 c=18r32 s y10 d=18r32
+
+
+Channel 6
+[[l8 o2c.r.c.r.c.r16]]8
+
+Channel 7
+v0 / q2F $EE $13 o4a+8 v98 (0)
+
+Channel 8
+l8 [[o3e4.r2^]]6 y6 e.r. y14 d.r. y6 e=18r32^8 y14 d.r. y6 e.r. y14 d=18r32^8
