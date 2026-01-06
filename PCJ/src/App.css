@@ -53,6 +53,22 @@ body,
   }
 }
 
+.meow-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.meow-text {
+  position: absolute;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75); /* light gray against salmon */
+  text-shadow: 0 0.08em 0.18em rgba(0, 0, 0, 0.3);
+}
+
 .cat-image-flasher {
   position: absolute;
   left: 50%;

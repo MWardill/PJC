@@ -16,20 +16,45 @@ const CAT_IMAGES: Record<(typeof NAMES)[number], string> = {
 type CatNameFlasherProps = {
   cycleMs?: number;
   pulseMs?: number;
+  meowCount?: number;
 };
 
-const CatNameFlasher = ({ cycleMs = 2000, pulseMs = 323 }: CatNameFlasherProps) => {
+type MeowPosition = {
+  top: number;
+  left: number;
+};
+
+const createMeowPositions = (count: number): MeowPosition[] => {
+  const positions: MeowPosition[] = [];
+  for (let i = 0; i < count; i += 1) {
+    positions.push({
+      top: 10 + Math.random() * 70, // avoid extreme edges
+      left: 10 + Math.random() * 70,
+    });
+  }
+  return positions;
+};
+
+const CatNameFlasher = ({
+  cycleMs = 2000,
+  pulseMs = 323,
+  meowCount = 2,
+}: CatNameFlasherProps) => {
   const [nameIndex, setNameIndex] = useState(0);
   const [colorIndex, setColorIndex] = useState(0);
+  const [meowPositions, setMeowPositions] = useState<MeowPosition[]>(() =>
+    createMeowPositions(meowCount),
+  );
 
   useEffect(() => {
     const interval = setInterval(() => {
       setNameIndex((prev) => (prev + 1) % NAMES.length);
       setColorIndex((prev) => (prev + 1) % COLORS.length);
+      setMeowPositions(createMeowPositions(meowCount));
     }, cycleMs); // swap on provided interval
 
     return () => clearInterval(interval);
-  }, [cycleMs]);
+  }, [cycleMs, meowCount]);
 
   const name = NAMES[nameIndex];
   const color = COLORS[colorIndex];
@@ -45,6 +70,17 @@ const CatNameFlasher = ({ cycleMs = 2000, pulseMs = 323 }: CatNameFlasherProps) 
         >
           {name}
         </span>
+      </div>
+      <div className="meow-layer">
+        {meowPositions.map((pos, index) => (
+          <span
+            key={`${name}-${index}`}
+            className="meow-text"
+            style={{ top: `${pos.top}%`, left: `${pos.left}%` }}
+          >
+            **MEOW**
+          </span>
+        ))}
       </div>
       <div className="cat-image-flasher">
         <img
