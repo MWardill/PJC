@@ -1,0 +1,352 @@
+#amk 2
+
+#spc
+{
+	#title		"Run, Kirby, Run!"
+	#game		"Kirby Super Star"
+	#author		"Jun Ishikawa, Dan Miyakawa"
+	#comment	"ported by Teows"
+}
+
+#path	"gourmetrace"
+
+#samples
+{
+	#default
+	"bass.brr"
+	"brass1.brr"
+	"brass2.brr"
+	"brass3.brr"
+	"cymbal.brr"
+	"flute1.brr"
+	"flute2.brr"
+	"hat.brr"
+	"snare.brr"
+	"timpani.brr"
+	"tom.brr"
+}
+
+#instruments
+{
+	"tom.brr"	$FF $E0 $7F $02 $20	; @30
+	"hat.brr"	$FF $E0 $7F $07 $A0	; @31
+	"snare.brr"	$FF $E0 $7F $07 $A0	; @32
+	"timpani.brr"	$FF $E0 $7F $01 $AF	; @33
+	"cymbal.brr"	$FD $F1 $7F $07 $40	; @34
+	"flute1.brr"	$FD $E0 $7F $04 $00	; @35
+	"brass1.brr"	$FF $E0 $7F $04 $00	; @36
+	"brass2.brr"	$8F $E0 $7F $04 $80	; @37
+	"flute2.brr"	$FF $E0 $7F $03 $00	; @38
+	"bass.brr"	$8F $E0 $7F $07 $00	; @39
+	"brass3.brr"	$FD $E0 $7F $04 $00	; @40
+}
+
+;____________________
+;		     |
+;      Settings      |
+;____________________|
+
+$EF $FE $32 $32
+$F1 $04 $32 $00
+$F5 $0C $21 $2B $2B $13 $FE $F3 $F9
+
+w202 t77
+
+"KK = @30 v200"
+"SN = @32 v190"
+"HH = @31 y12 v97"
+"H2 = @31 y13 v128"
+
+;____________________
+;		     |
+;   Channel 1 (#0)   |
+;____________________|
+
+#0
+(1)[KK y10c8
+HH c8
+SN y10c8
+HH c8]2
+KK y10c8
+HH c8
+KK y10c8
+HH c8
+KK y10c4
+
+@33 v223 c4
+
+[[ *7
+[KK y10c8
+H2 c16 v84c16
+SN y10c8
+H2 c16 v84c16] ]]4
+*8
+(1)7
+*9
+(1)5
+*
+KK y10c8
+H2 c16 v84c16
+SN y10c16
+@31 y12v84c16 y13v128c16 y12v84c16
+SN y10c4
+
+@34 y8 v158
+c4
+
+[[ (1)7* ]]3
+(1)4
+*2
+KK y10c8
+H2 c16 v84c16
+KK y10c8
+H2 c16 v84c16
+KK y10c4
+
+@34 y8 v168
+c4
+
+;____________________
+;		     |
+;   Channel 2 (#1)   |
+;____________________|
+
+#1
+$FA $03 $00
+@34 y8 v119 p0,0
+c2 c2 c4 c4 c8 r4.
+
+@35 v120 o6 y10
+p48,18,56
+q4Fc2 < g2 
+[q5Fd+4 d4 q4Fc2 
+q5Fc4 d4 d+4 c4
+< a+4 > c4 < q4Fg2]
+>> c2 < g2
+q5Fd+4 d4 c4 c8 d8
+d+4 f4 d4 < a+4
+> c4 < g4 > q4Fc2
+
+@36 o6
+p42,14,56
+q4Bc2 < q4Dg2 *
+> q4Bc2 < q4Dg2
+q5Fd4 $DD $00 $0C $B3
+f4 g4 c4
+c+4 $DD $00 $0C $B2
+f4 d4 < a+4
+p8,56
+v105 $E8 $0C $78
+q4Fb8 $DD $00 $24 $B0
+$E8 $90 $48 ^2..
+
+o2 l4 v116 p42,14,56
+(2)[v189
+q4Ff f q4Dg+ > c 
+d+ d c < g 
+q4Ff f q4Dg+ > c 
+d+ f q4Cg2]
+
+@37 o4 v108 p0,0
+r8 q1F
+[y9fy11fy9fy11f
+y9cy11cy9cy11c
+<y9a+y11a+y9a+y11a+
+>y9c]y11cy9cy11q4Fc8
+
+@36 y10 p42,14,56
+(2)
+
+@37 o4 v128 p0,0
+r8 q1F *
+v133y11q6Fc8q1Fy10c<q5Ca+4
+
+@38 v125 o5 l8
+p42,14,56
+[q2Fd+ q5Fd+16 d+16 q2Fd+ f g g f d+ 
+d q5Fd16 d16 q2Fd d+ q4Fd4. q5Fd+16 d16 
+q2Fc q5Fc16 c16 q2Fc d d+ d+ d c
+< a+ q5Fa+16 a+16 q2Fa+ > c q4Fd4. q5Fc16 < a+16 
+q2Fg+ q5Fg+16 g+16 q2Fg+ a+ > c] c < a+ g+
+g q5Fg16 a+16 > q2Fd+ f q5Fd+4 < a+4
+> q2Fd+ q5Fd+16 d+16 q2Fd+ f f+ f+ g+ f+
+f q5Ff16 f16 q2Ff f+ q4Ff4.
+
+@36 o5
+q5Dg16 f16 * q5Fc16 c16
+q2Fd f g q5Fg16 g16 q2Fg a+ g q5Fg 
+f d+ q2Fd q5Ff q2Fg q2Fd q5Ff q2Fg 
+q2Fd q5Ff q2Fd q5Ff q2Fg > c < b4
+
+@30 v255 o3 q7F
+$FA $03 $40
+f4
+
+;____________________
+;		     |
+;   Channel 3 (#2)   |
+;____________________|
+
+#2
+@39 o1
+
+l8
+q3Cf > q3Af c f < q3Bg > q3Ag < q3Fd > q3Cd 
+< q3Bg+ > q3Ag+ < q3Bg+ > q3Ag+ g r4.
+
+l4
+[q3Ac < q3Bg]4
+> q3Af c f < q3Cf
+*6
+q3Cf > q3Af g < q3Bg
+*6
+> q3Af c f < q3Cf
+*4
+> q3Af c f < q3Cf
+q3Cg > q3Af g < q3Bg
+*2
+
+(3)[q4Df f q4Bg+ > q4Ac
+d+ d c < q4Bg 
+q3Cf f q3Bg+ > q4Ac
+d+ f q49g2]
+[< q3Df > q3Ac < q3Cf > q3Af
+c g c < q3Bg 
+g > q3Ag < q3Bg > q3Ag
+c g c] < q3Bg
+
+(3) * q5Aa+
+
+l8
+[q3Cd+ > q25d+ < q3Bg > q25d+ < q3Ba+ > q25d+ < q3Bg > q25d+
+< q3Aa+ > q23a+ q3Af q23a+ < q3Aa+ > q23a+ < q3Cf > q23a+
+q3Ac > q23c << q3Bg >> q23c < q3Ac > q23c << q3Bg >> q23c
+<< q3Bg > q25g q3Ad q25g < q3Bg > q25g q3Ad q25g
+< q3Bf > q25f q3Ac q25f < q3Aa+ > q23a+ < q3Cf > q23a+]
+< q3Cd+ > q25d+ < q3Ba+ > q25d+ < q3Cd+ > q25d+ < q3Ba+ > q25d+
+< q3Ab > q23b < q3Bf+ > q23b < q3Ab > q23b < q3Bf+ > q23b
+< q3Aa+ > q23a+ q3Af q23a+ < q3Aa+ > q23a+ < q3Cf > q23a+
+* < q3Cd+ > q27d+ < q3Aa+ > q27d+ < q3Bg+ > q27g+ q3Ad+ q27g+
+< q3Fd > q29d < q3Aa > q29d < q3Cd > q29d < q3Aa > q29d
+< q3Bg > q3Ag d g < q3Bg r q5Cg4
+
+;____________________
+;		     |
+;   Channel 4 (#3)   |
+;____________________|
+
+#3
+@36 o5 v124 y9
+q1Fd+4 d8 c8 < a+8 f8 d4
+g+8 a+8 > c8 d8 < q0Fb4 r4
+
+o2 q3F l8 v135
+[g > g < c > g]4
+c g+ < f > g+ c g+ < f > g+ *6
+< f > g+ c g+ d a+ < g > a+ *2
+
+@37 v127
+y9c > c << y11c >> c < y9c > c << y11c >> c
+< y9c > c << y11c >> c < y9c > c << y11c >> c
+< q3Dy9f > f << y11f >> f < y9f > f << y11f >> f
+< q3Fy9c > c << y11c >> c < y9c > c << y11c >> c
+< y9c > c << y11c >> c < y9c > c << y11c >> c
+< q3Ey9f > c << y11f >> c < y9f > c << y11f >> c
+<< q3Fy9g > a+ << y11g >> a+ < y9g > a+ << y11g >> a+
+y9c > c << y11c >> c < y9c > c << y11c >> c
+
+l4 v95 q1F
+[$E8 $C0 $93 r8
+y11f y9f y11f y9f
+$E8 $C0 $5F y11c y9c y11c y9c
+$E8 $C0 $93 y11f y9f y11f y9f
+$E8 $A8 $5F y11c y9c y11c y9q5Fc8]
+
+@40 v121 y11 p32,12,40
+> q5Df4. q2Dd+8 c4 q3Dc8 d8
+d+4 < g4 > d+2
+q5Dd8. q5Fd16 q3Dd8 c8 < a+4 > c8 d8
+c4 d4 q5Dd+4 c4
+
+@37
+*
+
+@40 v130 y11
+q5Df4. q2Dd+8 q3Dd8. q5Ed16 q5Df8 g8
+q3Dg4 d+4 c4 < q3Fg4
+q5Da+8. a+16 a+8 > d8 < a+8. q5Fg16 q5Dd8 g8
+q0Dd+2. q6Dd4 <
+
+r8 y9 v158
+(5)[q0Ea+4 q0Da+4 q4Fa+16 q0Da+8. q4Ea+16 q0Ba+8.]2
+$FA $02 $02 *
+$FA $02 $00 *
+(6)[q0Eg+4 q0Dg+4 q4Fa+16 q0Da+8. q4Ea+16 q0Ba+8.]
+(5) $FA $02 $01 (5)
+$FA $02 $00 (5)3
+$FA $02 $02 (5)
+$FA $02 $00 (5) *
+$FA $02 $02 *
+(5) $FA $02 $00
+> q4Fd16 q0Dd8. q4Fc16 q4Dc16 < q0Fb4
+
+@36 > v135q7Fd4 $DD $18 $18 $B2
+
+;____________________
+;		     |
+;   Channel 5 (#4)   |
+;____________________|
+
+#4
+@36 o5 v130 y11
+q1Fg4 f8 d+8 d8 < a+8 g4
+> c8 d8 d+8 f8 q0Fd4 r4
+
+o3 q3F l8
+[c > d+ << g >> d+]4
+< f > c < c > c < f > c < c > c  *6
+< c > c < f > c < f > d < d > d  *2
+
+@40 v135
+<< (4)[q3Dy11c >> d+ << y9g >> d+]4
+<< [y11f > q3Eg+ y9q3Dc q3Eg+ < y11q3Df > q3Eg+ y9q3Dc q3Eg+]
+(4)4 *
+<< q3Dy11g >>> d << y9d >> d <<< y11g >>> d << y9d >> d
+(4)2
+
+l4 v95 q1F
+[$E8 $C0 $93 r8
+< y9g+ y11g+ y9g+ y11g+
+> $E8 $C0 $5F y9d+ y11d+ y9d+ y11d+
+< $E8 $C0 $93 y9g+ y11g+ y9g+ y11g+
+> $E8 $A8 $5F y9d+ y11d+ y9d+ y11q5Fd+8]
+
+v126 y10 p32,12,40
+> q5Dg+4. q2Dg8 f4 q3Dd+8 f8
+g4 c4 g2
+q5Df8. q5Ff16 q3Df8 d+8 d4 d+8 f8
+d+4 f4 q5Dg4 d+4
+
+*
+
+v137 y10
+q5Dg+4. q2Dg8 q3Df8. q5Ef16 q5Dg+8 a+8
+> q3Dc4 < g4 d+4 q3Fc4
+q5Dd8. d16 d8 f8 d8. < q5Fa+16 q5Dg8 a+8
+> q0Dc2. < q6Da+4
+
+r8 y11 v152
+[[ $FA $02 $09 (5)
+$FA $02 $07 (5) ]]2
+(6) $FA $02 $09 (5)
+$FA $02 $08 (5)
+[[$FA $02 $07 (5)
+$FA $02 $09 (5)]]2
+$FA $02 $07 (5)
+$FA $02 $07 (6)
+$FA $02 $00
+q0Eg4 q0Dg4 q4Fd+16 q0Dd+8. q4Ed+16 q0Bd+8.
+$FA $02 $0B (5) $FA $02 $00
+q4Ff16 q0Df8. q4Ff16 q4Df16 q0Fg4
+
+@36 v142q7Fg4 $DD $18 $18 $B5

@@ -1,16 +1,19 @@
 import "./App.css";
 import SpcPlayer from "./SpcPlayer";
-import x3Boss from "./assets/songs/X3 Boss.spc";
+import gourmetrace from "./assets/songs/gourmetrace.spc";
+import RollingSpheres from "./RollingSpheres";
+import CatNameFlasher from "./CatNameFlasher";
 
-function App() {  
+function App() {
   return (
     <>
-      <div>
-          Helllooo
-          <SpcPlayer spcUrl={x3Boss} autoStart="mount" hideUi={true} />
+      <div className="app-root">
+        <RollingSpheres />
+        <CatNameFlasher cycleMs={1500} pulseMs={323} />
+        <SpcPlayer spcUrl={gourmetrace} autoStart="mount" hideUi={true} />
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
